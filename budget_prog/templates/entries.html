@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}Entries{% endblock %}
+
+{% block content %}
+
+<h1><b>Your balance:</b> {{balance}} €</h1>
+<br>
+<div class="btn-group">
+    <a href="{{ url_for('new_entries') }}" class="btn btn-outline-primary">New Entries</a>
+</div>
+
+{% if all_entries_page %}
+{% for entries in all_entries_page.items %}
+<hr>
+{% if entries.income %}
+<p>Income: {{entries.sum}}</p>
+<p>Date: {{ datetime.strftime(entries.date, "%Y-%m-%d %H:%M:%S") }}</p>
+{% endif %}
+{% if entries.costs %}
+<p>Costs: {{entries.sum}}</p>
+<p>Date: {{ datetime.strftime(entries.date, "%Y-%m-%d %H:%M:%S") }}</p>
+{% endif %}
+<div class="btn-group btn-group-sm">
+    <a href="{{ url_for('delete', id=entries['id']) }}" class="btn btn-outline-primary">Delete</a>
+</div>
+<div class="btn-group btn-group-sm">
+    <a href="{{ url_for('update', id=entries['id']) }}" class="btn btn-outline-primary">Update</a>
+</div>
+{% endfor %}
+<hr>
+
+<div class="text-right">
+    <a href="{{ url_for('entries', page=all_entries_page.prev_num) }}"
+       class="btn btn-primary mb-4 {% if all_entries_page.page == 1 %}{% endif %}">&laquo;</a>
+    {% for page_num in all_entries_page.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+    {% if page_num %}
+    {% if all_entries_page.page == page_num %}
+    <a class="btn btn-primary mb-4" href="{{ url_for('entries', page=page_num) }}">{{ page_num }}</a>
+    {% else %}
+    <a class="btn btn-outline-primary mb-4" href="{{ url_for('entries', page=page_num) }}">{{ page_num }}</a>
+    {% endif %}
+    {% else %}
+    {% endif %}
+    {% endfor %}
+    <a href="{{ url_for('entries', page=all_entries_page.next_num) }}"
+       class="btn btn-primary mb-4
+       {% if all_entries_page.page == all_entries_page.pages %}{% endif %}">&raquo;</a>
+</div>
+
+{% endif %}
+
+{% endblock %}

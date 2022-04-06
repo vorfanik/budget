@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Account{% endblock %}
+
+{% block content %}
+
+<img class="rounded-circle" src="{{ image }}">
+<div>
+<br>
+<p><b>Name:</b> {{ current_user.name}} </p>
+<p><b>Email:</b> {{ current_user.email}} </p>
+</div>
+<br>
+<div class="btn-group btn-group-sm">
+    <a href="{{ url_for('account_update') }}" class="btn btn-outline-primary">Update</a>
+</div>
+
+{% endblock %}

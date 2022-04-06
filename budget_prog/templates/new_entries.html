@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}New Entries{% endblock %}
+
+{% block content %}
+
+<form method="post" action="#">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+        {{ form.sum.label(class="form-control-label", style="margin-bottom: 5px") }}
+        {{ form.sum(class="form-control") }}
+    </div>
+    <br>
+    <div class="form-check">
+        {{ form.income.label(class="form-check-label") }}
+        {{ form.income(class="form-check-input") }}
+    </div>
+    <br>
+    <div class="form-check">
+        {{ form.costs.label(class="form-check-label") }}
+        {{ form.costs(class="form-check-input") }}
+    </div>
+    <br>
+    <div class="form-group">
+        {{ form.submit(class="btn btn-outline-primary") }}
+    </div>
+</form>
+{% endblock %}
