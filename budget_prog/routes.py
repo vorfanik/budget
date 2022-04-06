@@ -50,7 +50,6 @@ def reset_request():
         return redirect(url_for('signin'))
     return render_template('reset_request.html', form=form)
 
-# from . import mail
 
 
 def send_reset_email(user):
