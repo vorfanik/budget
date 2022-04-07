@@ -3,32 +3,32 @@
 {% block title %}Update password{% endblock %}
 
 {% block content %}
-    <div class="content-section">
-        <form method="POST" action="">
-            {{ form.hidden_tag() }}
-            <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Password Update</legend>
-                <div class="form-group">
-                    {{ form.email.label(class="form-control-label", style="margin-bottom: 5px") }}
-                    {% if form.email.errors %}
-                        {{ form.email(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.email.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.email(class="form-control form-control-lg") }}
-                    {% endif %}
+<div class="content-section">
+    <form method="POST" action="#">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Password Update</legend>
+            <div class="form-group">
+                {{ form.email.label(class="form-control-label", style="margin-bottom: 5px") }}
+                {% if form.email.errors %}
+                {{ form.email(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.email.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
                 </div>
-            </fieldset>
-            <br>
-            <div class="btn-group">
-                {{ form.submit(class="btn btn-outline-primary") }}
+                {% else %}
+                {{ form.email(class="form-control form-control-lg") }}
+                {% endif %}
             </div>
-            <div class="btn-group btn-group-sm">
-                <a href="{{ url_for('registration') }}" class="btn btn-outline-primary" style="margin-left:25px">Sign Up</a>
-            </div>
-        </form>
-    </div>
+        </fieldset>
+        <br>
+        <div class="btn-group">
+            {{ form.submit(class="btn btn-outline-primary") }}
+        </div>
+        <div class="btn-group btn-group-sm">
+            <a href="{{ url_for('registration') }}" class="btn btn-outline-primary" style="margin-left:25px">Sign Up</a>
+        </div>
+    </form>
+</div>
 {% endblock content %}
